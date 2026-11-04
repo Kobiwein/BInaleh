@@ -92,7 +92,7 @@
 
 <section id="signup" class="alt"><div class="wrap">
 <h2>בואו נכיר</h2><p class="sub">השאירו פרטים ונחזור אליכם לתיאום שיחת היכרות טלפונית.</p>
-<form id="lead-form" method="post" data-endpoint="https://script.google.com/macros/s/AKfycbyodmDjWdX2JbiX-SBuD0vL8BrA2LLhAQ-BVRKBjW-RPjgoLFlBgl9lHIKg-8ibZH-fRQ/exec" novalidate aria-label="טופס הרשמה ותיאום שיחת היכרות">
+<form id="lead-form" method="post" data-endpoint="https://script.google.com/macros/s/AKfycbzAMRw6jjXdSJQbsYNifRAeQ_RpYLoMZHoZdDvoCh6P_g-jbnJ-rTbFZvaq4I-8zg43/exec" novalidate aria-label="טופס הרשמה ותיאום שיחת היכרות">
 <input type="hidden" name="page" id="f-page" value="">
 <div class="hp" aria-hidden="true"><label for="f-hp">אין למלא שדה זה</label><input type="text" id="f-hp" name="_gotcha" tabindex="-1" autocomplete="off"></div>
 <label for="f-name">שם מלא *<input id="f-name" type="text" name="name" required autocomplete="name" maxlength="100" placeholder="השם שלכם"><span class="err" id="f-name-err"></span></label>
@@ -135,15 +135,15 @@ form.addEventListener('submit',function(ev){
  if(!ok){status('נא להשלים את השדות המסומנים.',false);var f=form.querySelector('[aria-invalid="true"]');if(f)f.focus();return;}
  var endpoint=(form.getAttribute('data-endpoint')||'').trim();
  if(!endpoint){status('הטופס עדיין בהקמה ונפתח בקרוב. תודה על הסבלנות!',false);return;}
- sb.disabled=true;sb.textContent='שולח...';
+ sb.disabled=true;sb.textContent='שולח...';var sent=false;
  var payload={name:v('f-name'),phone:v('f-phone'),email:v('f-email'),age_group:v('f-age'),message:v('f-msg'),
   terms_consent:document.getElementById('f-terms').checked?'yes':'no',
   marketing_consent:document.getElementById('f-mkt').checked?'yes':'no',
   page:pg?pg.value:'',_gotcha:form.elements['_gotcha'].value};
  fetch(endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
-  .then(function(){form.reset();if(pg)pg.value=location.href.split('#')[0];status('תודה! הפנייה התקבלה, ונחזור אליכם בהקדם לתיאום שיחת ההיכרות הטלפונית.',true);})
+  .then(function(){sent=true;form.reset();if(pg)pg.value=location.href.split('#')[0];status('תודה! הפנייה התקבלה, ונחזור אליכם בהקדם לתיאום שיחת ההיכרות הטלפונית.',true);})
   .catch(function(){status('השליחה לא הצליחה. אפשר לנסות שוב בעוד רגע.',false);})
-  .then(function(){sb.disabled=false;sb.textContent='להרשמה ולתיאום שיחת היכרות';});
+  .then(function(){setTimeout(function(){sb.disabled=false;sb.textContent='להרשמה ולתיאום שיחת היכרות';},sent?5000:0);});
 });
 })();
 </script>
