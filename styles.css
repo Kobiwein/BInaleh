@@ -126,7 +126,8 @@ input::placeholder,textarea::placeholder{color:#6c6878}
 .form-note{font-size:14.5px;color:var(--muted)}
 .chk{flex-direction:row;align-items:flex-start;gap:var(--s3);font-weight:500}
 .chk input{width:20px;height:20px;margin-top:4px;flex:none}
-.mkt{background:var(--p-soft);border-radius:var(--r-sm);padding:var(--s4)}
+.mkt{color:var(--muted);font-weight:400;line-height:1.6}
+.mkt small{display:block;font-size:14px;margin-top:var(--s1)}
 .err{color:#b00020;font-size:13px;font-weight:600}
 [aria-invalid="true"]{border-color:#b00020}
 .status{font-weight:700;min-height:1.5em}.status.ok{color:#0a6e36}.status.bad{color:#b00020}
@@ -143,9 +144,11 @@ footer a:not(.logo):hover{color:var(--p-d)}
 .skip:focus{top:8px}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #c2410c;outline-offset:3px}
 /* cookie */
-#cookie{position:fixed;bottom:var(--s4);inset-inline:var(--s4);max-width:760px;margin:0 auto;background:var(--surface);border-radius:var(--r);box-shadow:0 12px 40px rgba(28,26,43,.22);padding:var(--s5);z-index:50;display:none;font-size:15px}
-#cookie .row{display:flex;gap:var(--s3);flex-wrap:wrap;margin-top:var(--s3);align-items:center}
+#cookie{position:fixed;bottom:max(var(--s3),env(safe-area-inset-bottom));inset-inline:var(--s3);max-width:680px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);box-shadow:0 4px 20px rgba(28,26,43,.12);padding:var(--s3) var(--s4);z-index:50;display:none;font-size:14px;line-height:1.5;max-height:calc(100dvh - 24px);overflow-y:auto}
+#cookie .row{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s2);align-items:center}
+#cookie .btn{min-height:44px;padding:8px 16px;font-size:14px}
 #cookie a{color:var(--p)}
+@media(max-width:560px){#cookie .row .btn{flex:1}#f-submit{width:100%}}
 /* legal */
 .legal-hero{background:var(--surface);border-bottom:1px solid var(--line);padding:var(--s8) 0 var(--s6)}
 .legal-hero h1{font-size:clamp(32px,4.2vw,46px);font-weight:800;margin-bottom:var(--s2);letter-spacing:-.03em}
